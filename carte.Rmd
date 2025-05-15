@@ -1,0 +1,78 @@
+---
+title: "Carte interactive Paris - Étendue"
+author: "Jessy - Tess"
+date: "2025-05-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(leaflet)
+library(dplyr)
+```
+
+## Présentation du projet
+
+Cette carte interactive représente :
+- Les **universités parisiennes** (13 au total),
+- Les **parcs intra-muros** (13),
+- Les **monuments historiques** (13).
+
+## Données utilisées
+
+Les données ont été collectées manuellement depuis des sources officielles. Chaque tableau contient les colonnes suivantes : `name`, `latitude`, `longitude`.
+
+## Chargement des données
+
+```{r data}
+universites <- data.frame(
+  name = c("Université Paris Cité", "Université Paris 1 Panthéon–Sorbonne", "Université Paris 2 Panthéon–Assas",
+           "Université Sorbonne Nouvelle", "Université Paris Dauphine", "Université PSL",
+           "Sciences Po Paris", "Université Paris Descartes", "Université Paris Diderot",
+           "École Normale Supérieure", "Université Panthéon-Sorbonne", "Université Paris 3", "Université Paris 5"),
+  latitude = c(48.8471, 48.8494, 48.8463, 48.8325, 48.8708, 48.8467,
+               48.8478, 48.8500, 48.8312, 48.8430, 48.8490, 48.8320, 48.8405),
+  longitude = c(2.3586, 2.3560, 2.3422, 2.3554, 2.2758, 2.3430,
+                2.3190, 2.3250, 2.3748, 2.3457, 2.3559, 2.3550, 2.3375)
+)
+
+parcs <- data.frame(
+  name = c("Jardin du Luxembourg", "Jardin des Tuileries", "Parc Monceau",
+           "Parc Montsouris", "Jardin des Plantes", "Parc André Citroën",
+           "Bois de Vincennes", "Bois de Boulogne", "Jardin Anne-Frank",
+           "Jardin Catherine Labouré", "Parc Martin Luther King", "Square des Batignolles", "Jardin Nelson Mandela"),
+  latitude = c(48.8462, 48.8635, 48.8790, 48.8210, 48.8431, 48.8410,
+               48.8323, 48.8638, 48.8610, 48.8530, 48.8945, 48.8846, 48.8613),
+  longitude = c(2.3372, 2.3275, 2.3087, 2.3371, 2.3601, 2.2769,
+                2.4351, 2.2494, 2.3572, 2.3134, 2.3181, 2.3196, 2.3474)
+)
+
+monuments <- data.frame(
+  name = c("Tour Eiffel", "Arc de Triomphe", "Cathédrale Notre-Dame",
+           "Panthéon", "Sainte-Chapelle", "Palais Garnier",
+           "Musée d'Orsay", "Louvre", "Invalides",
+           "Place de la Concorde", "Basilique du Sacré-Cœur", "Grand Palais", "Pont Alexandre III"),
+  latitude = c(48.8584, 48.8738, 48.8529, 48.8462, 48.8554, 48.8719,
+               48.8600, 48.8606, 48.8566, 48.8656, 48.8867, 48.8660, 48.8631),
+  longitude = c(2.2945, 2.2950, 2.3500, 2.3469, 2.3444, 2.3316,
+                2.3266, 2.3376, 2.3125, 2.3212, 2.3431, 2.3130, 2.3136)
+)
+```
+
+## Carte interactive
+
+```{r map}
+leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(data = universites, ~longitude, ~latitude, color = "blue", radius = 5, label = ~name) %>%
+  addCircleMarkers(data = parcs, ~longitude, ~latitude, color = "green", radius = 5, label = ~name) %>%
+  addCircleMarkers(data = monuments, ~longitude, ~latitude, color = "red", radius = 5, label = ~name)
+```
+
+## Analyse des données
+
+Les universités centrales bénéficient d’une forte accessibilité aux parcs et monuments. Les parcs sont majoritairement situés au centre et à l’ouest de Paris. Les monuments sont aussi très concentrés autour des 1er, 5e, 6e, 7e et 8e arrondissements.
+
+## Conclusion
+
+Cette visualisation permet d’évaluer l’équité de l’environnement étudiant dans Paris intra-muros.

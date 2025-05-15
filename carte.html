@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jessy - Tess" />
+
+<meta name="date" content="2025-05-05" />
+
+<title>Carte interactive Paris - Étendue</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="carte.html">Carte Interactive</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Carte interactive Paris - Étendue</h1>
+<h4 class="author">Jessy - Tess</h4>
+<h4 class="date">2025-05-05</h4>
+
+</div>
+
+
+<div id="présentation-du-projet" class="section level2">
+<h2>Présentation du projet</h2>
+<p>Cette carte interactive représente : - Les <strong>universités
+parisiennes</strong> (13 au total), - Les <strong>parcs
+intra-muros</strong> (13), - Les <strong>monuments historiques</strong>
+(13).</p>
+</div>
+<div id="données-utilisées" class="section level2">
+<h2>Données utilisées</h2>
+<p>Les données ont été collectées manuellement depuis des sources
+officielles. Chaque tableau contient les colonnes suivantes :
+<code>name</code>, <code>latitude</code>, <code>longitude</code>.</p>
+</div>
+<div id="chargement-des-données" class="section level2">
+<h2>Chargement des données</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>universites <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Université Paris Cité&quot;</span>, <span class="st">&quot;Université Paris 1 Panthéon–Sorbonne&quot;</span>, <span class="st">&quot;Université Paris 2 Panthéon–Assas&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>           <span class="st">&quot;Université Sorbonne Nouvelle&quot;</span>, <span class="st">&quot;Université Paris Dauphine&quot;</span>, <span class="st">&quot;Université PSL&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>           <span class="st">&quot;Sciences Po Paris&quot;</span>, <span class="st">&quot;Université Paris Descartes&quot;</span>, <span class="st">&quot;Université Paris Diderot&quot;</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>           <span class="st">&quot;École Normale Supérieure&quot;</span>, <span class="st">&quot;Université Panthéon-Sorbonne&quot;</span>, <span class="st">&quot;Université Paris 3&quot;</span>, <span class="st">&quot;Université Paris 5&quot;</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="at">latitude =</span> <span class="fu">c</span>(<span class="fl">48.8471</span>, <span class="fl">48.8494</span>, <span class="fl">48.8463</span>, <span class="fl">48.8325</span>, <span class="fl">48.8708</span>, <span class="fl">48.8467</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>               <span class="fl">48.8478</span>, <span class="fl">48.8500</span>, <span class="fl">48.8312</span>, <span class="fl">48.8430</span>, <span class="fl">48.8490</span>, <span class="fl">48.8320</span>, <span class="fl">48.8405</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="at">longitude =</span> <span class="fu">c</span>(<span class="fl">2.3586</span>, <span class="fl">2.3560</span>, <span class="fl">2.3422</span>, <span class="fl">2.3554</span>, <span class="fl">2.2758</span>, <span class="fl">2.3430</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>                <span class="fl">2.3190</span>, <span class="fl">2.3250</span>, <span class="fl">2.3748</span>, <span class="fl">2.3457</span>, <span class="fl">2.3559</span>, <span class="fl">2.3550</span>, <span class="fl">2.3375</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>parcs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Jardin du Luxembourg&quot;</span>, <span class="st">&quot;Jardin des Tuileries&quot;</span>, <span class="st">&quot;Parc Monceau&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>           <span class="st">&quot;Parc Montsouris&quot;</span>, <span class="st">&quot;Jardin des Plantes&quot;</span>, <span class="st">&quot;Parc André Citroën&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>           <span class="st">&quot;Bois de Vincennes&quot;</span>, <span class="st">&quot;Bois de Boulogne&quot;</span>, <span class="st">&quot;Jardin Anne-Frank&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>           <span class="st">&quot;Jardin Catherine Labouré&quot;</span>, <span class="st">&quot;Parc Martin Luther King&quot;</span>, <span class="st">&quot;Square des Batignolles&quot;</span>, <span class="st">&quot;Jardin Nelson Mandela&quot;</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="at">latitude =</span> <span class="fu">c</span>(<span class="fl">48.8462</span>, <span class="fl">48.8635</span>, <span class="fl">48.8790</span>, <span class="fl">48.8210</span>, <span class="fl">48.8431</span>, <span class="fl">48.8410</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>               <span class="fl">48.8323</span>, <span class="fl">48.8638</span>, <span class="fl">48.8610</span>, <span class="fl">48.8530</span>, <span class="fl">48.8945</span>, <span class="fl">48.8846</span>, <span class="fl">48.8613</span>),</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="at">longitude =</span> <span class="fu">c</span>(<span class="fl">2.3372</span>, <span class="fl">2.3275</span>, <span class="fl">2.3087</span>, <span class="fl">2.3371</span>, <span class="fl">2.3601</span>, <span class="fl">2.2769</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>                <span class="fl">2.4351</span>, <span class="fl">2.2494</span>, <span class="fl">2.3572</span>, <span class="fl">2.3134</span>, <span class="fl">2.3181</span>, <span class="fl">2.3196</span>, <span class="fl">2.3474</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>monuments <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Tour Eiffel&quot;</span>, <span class="st">&quot;Arc de Triomphe&quot;</span>, <span class="st">&quot;Cathédrale Notre-Dame&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>           <span class="st">&quot;Panthéon&quot;</span>, <span class="st">&quot;Sainte-Chapelle&quot;</span>, <span class="st">&quot;Palais Garnier&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>           <span class="st">&quot;Musée d&#39;Orsay&quot;</span>, <span class="st">&quot;Louvre&quot;</span>, <span class="st">&quot;Invalides&quot;</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>           <span class="st">&quot;Place de la Concorde&quot;</span>, <span class="st">&quot;Basilique du Sacré-Cœur&quot;</span>, <span class="st">&quot;Grand Palais&quot;</span>, <span class="st">&quot;Pont Alexandre III&quot;</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>  <span class="at">latitude =</span> <span class="fu">c</span>(<span class="fl">48.8584</span>, <span class="fl">48.8738</span>, <span class="fl">48.8529</span>, <span class="fl">48.8462</span>, <span class="fl">48.8554</span>, <span class="fl">48.8719</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>               <span class="fl">48.8600</span>, <span class="fl">48.8606</span>, <span class="fl">48.8566</span>, <span class="fl">48.8656</span>, <span class="fl">48.8867</span>, <span class="fl">48.8660</span>, <span class="fl">48.8631</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>  <span class="at">longitude =</span> <span class="fu">c</span>(<span class="fl">2.2945</span>, <span class="fl">2.2950</span>, <span class="fl">2.3500</span>, <span class="fl">2.3469</span>, <span class="fl">2.3444</span>, <span class="fl">2.3316</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>                <span class="fl">2.3266</span>, <span class="fl">2.3376</span>, <span class="fl">2.3125</span>, <span class="fl">2.3212</span>, <span class="fl">2.3431</span>, <span class="fl">2.3130</span>, <span class="fl">2.3136</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="carte-interactive" class="section level2">
+<h2>Carte interactive</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">data =</span> universites, <span class="sc">~</span>longitude, <span class="sc">~</span>latitude, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">radius =</span> <span class="dv">5</span>, <span class="at">label =</span> <span class="sc">~</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">data =</span> parcs, <span class="sc">~</span>longitude, <span class="sc">~</span>latitude, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">radius =</span> <span class="dv">5</span>, <span class="at">label =</span> <span class="sc">~</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">data =</span> monuments, <span class="sc">~</span>longitude, <span class="sc">~</span>latitude, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">radius =</span> <span class="dv">5</span>, <span class="at">label =</span> <span class="sc">~</span>name)</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-45a35c080f1a64f1b30e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-45a35c080f1a64f1b30e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[48.8471,48.8494,48.8463,48.8325,48.8708,48.8467,48.8478,48.85,48.8312,48.843,48.849,48.832,48.8405],[2.3586,2.356,2.3422,2.3554,2.2758,2.343,2.319,2.325,2.3748,2.3457,2.3559,2.355,2.3375],5,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,["Université Paris Cité","Université Paris 1 Panthéon–Sorbonne","Université Paris 2 Panthéon–Assas","Université Sorbonne Nouvelle","Université Paris Dauphine","Université PSL","Sciences Po Paris","Université Paris Descartes","Université Paris Diderot","École Normale Supérieure","Université Panthéon-Sorbonne","Université Paris 3","Université Paris 5"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[48.8462,48.8635,48.879,48.821,48.8431,48.841,48.8323,48.8638,48.861,48.853,48.8945,48.8846,48.8613],[2.3372,2.3275,2.3087,2.3371,2.3601,2.2769,2.4351,2.2494,2.3572,2.3134,2.3181,2.3196,2.3474],5,null,null,{"interactive":true,"className":"","stroke":true,"color":"green","weight":5,"opacity":0.5,"fill":true,"fillColor":"green","fillOpacity":0.2},null,null,null,null,["Jardin du Luxembourg","Jardin des Tuileries","Parc Monceau","Parc Montsouris","Jardin des Plantes","Parc André Citroën","Bois de Vincennes","Bois de Boulogne","Jardin Anne-Frank","Jardin Catherine Labouré","Parc Martin Luther King","Square des Batignolles","Jardin Nelson Mandela"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[48.8584,48.8738,48.8529,48.8462,48.8554,48.8719,48.86,48.8606,48.8566,48.8656,48.8867,48.866,48.8631],[2.2945,2.295,2.35,2.3469,2.3444,2.3316,2.3266,2.3376,2.3125,2.3212,2.3431,2.313,2.3136],5,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,["Tour Eiffel","Arc de Triomphe","Cathédrale Notre-Dame","Panthéon","Sainte-Chapelle","Palais Garnier","Musée d'Orsay","Louvre","Invalides","Place de la Concorde","Basilique du Sacré-Cœur","Grand Palais","Pont Alexandre III"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[48.821,48.8945],"lng":[2.2494,2.4351]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="analyse-des-données" class="section level2">
+<h2>Analyse des données</h2>
+<p>Les universités centrales bénéficient d’une forte accessibilité aux
+parcs et monuments. Les parcs sont majoritairement situés au centre et à
+l’ouest de Paris. Les monuments sont aussi très concentrés autour des
+1er, 5e, 6e, 7e et 8e arrondissements.</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Cette visualisation permet d’évaluer l’équité de l’environnement
+étudiant dans Paris intra-muros.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

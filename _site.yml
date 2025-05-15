@@ -1,0 +1,10 @@
+name: "Carte Interactive Paris Etendue"
+navbar:
+  left:
+    - text: "Carte Interactive"
+      href: carte.html
+output:
+  html_document:
+    toc_float: true
+    theme: united
+    highlight: tango
